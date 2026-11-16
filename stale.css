@@ -936,7 +936,37 @@ body {
         grid-template-columns: 1fr; 
         padding: 0 15px; 
     }
+    .news-card {     /* НОВОСТИ: Исправляем карточки для телефона */
+    .news-content { 
+        grid-template-columns: 1fr; /* В одну колонку */
+        padding: 0 15px; 
+    }
     .news-card { 
+        height: auto; /* Убираем жесткую высоту */
+        flex-direction: column; /* Картинка сверху, текст снизу */
+        margin-bottom: 15px;
+        background: rgba(255, 255, 255, 0.1); /* Легкий фон для карточки */
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    .news-photo { 
+        position: relative; /* Возвращаем в поток */
+        width: 100%; 
+        height: 150px; /* ← УМЕНЬШИЛИ ВЫСОТУ КАРТИНКИ (было 180, стало 150) */
+        object-fit: cover; /* Картинка не искажается */
+    }
+    .news-text { 
+        position: relative; /* Текст идет после картинки */
+        padding: 15px; 
+    }
+    .news-text h3 { 
+        font-size: 16px; /* Чуть уменьшили шрифт заголовка */
+        max-width: 100%; /* Убираем ограничение ширины */
+    }
+    .news-text p { 
+        font-size: 13px;
+        max-width: 100%; 
+    }
         flex-direction: column; /* Картинка над текстом */
     }
     .news-photo { 
