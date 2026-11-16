@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const fullMessage = `ФИО: ${fio}, Email: ${email}, Направление: ${napravlenie}. Сообщение: ${message}`;
 
-            fetch('http://127.0.0.1:8000/applications', {
+            fetch('/applications', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -73,7 +73,7 @@ function showMyApps() {
     const list = document.getElementById('my-apps-list');
     list.innerHTML = 'Загрузка...';
     
-    fetch(`http://127.0.0.1:8000/my-applications?username=${username}`)
+    fetch(`/my-applications?username=${username}`)
         .then(res => res.json())
         .then(data => {
             list.innerHTML = '';
