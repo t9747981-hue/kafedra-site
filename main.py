@@ -7,6 +7,7 @@ from datetime import datetime
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from config import settings
+from fastapi.staticfiles import StaticFiles
 # ==========================================
 # 1. НАСТРОЙКА БАЗЫ ДАННЫХ
 # ==========================================
@@ -59,6 +60,7 @@ def verify_password(plain_password, hashed_password):
 # 3. СЕРВЕР
 # ==========================================
 app = FastAPI(title="Сайт кафедры")
+app.mount("/", StaticFiles(directory=".", html=True), name="static")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
