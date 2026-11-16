@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход и Регистрация - КАФЕДРА МЕЧТЫ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stale.css">
+    <style>
+        /* Немного стилей только для этой страницы */
+        .auth-container {
+            max-width: 500px;
+            margin: 100px auto;
+            background: #92D5FF;
+            padding: 40px;
+            border-radius: 20px;
+            color: #1a2b4c;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .auth-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+        .auth-container input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            font-family: 'Jura', sans-serif;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .auth-container button {
+            width: 100%;
+            padding: 15px;
+            background: #1d4286;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Jura', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .auth-container button:hover {
+            background: #365fa3;
+        }
+        .auth-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .auth-links a {
+            color: #1a2b4c;
+            text-decoration: underline;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <img src="star.png" alt="Логотип кафедры" class="logo-icon">
+            <span class="logo-text">КАФЕДРА МЕЧТЫ</span>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="index.html#news-content">Новости</a></li>
+                <li><a href="index.html#pedagogs">Педагоги</a></li>
+                <li><a href="index.html#zayav-nazv">Заявки</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <h2 id="form-title">Вход</h2>
+            
+            <form id="auth-form">
+                <input type="text" id="auth-login" placeholder="Логин" required>
+                <input type="password" id="auth-password" placeholder="Пароль" required>
+                <button type="submit" id="submit-btn">Войти</button>
+            </form>
+
+            <div class="auth-links">
+                <p>Нет аккаунта? <a href="#" onclick="toggleForm()">Зарегистрироваться</a></p>
+                <p><a href="index.html">← Вернуться на главную</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let isLoginMode = true; // По умолчанию открыта форма входа
+
+        function toggleForm() {
+            isLoginMode = !isLoginMode;
+            const title = document.getElementById('form-title');
+            const btn = document.getElementById('submit-btn');
+            const link = document.querySelector('.auth-links a');
+
+            if (isLoginMode) {
+                title.innerText = 'Вход';
+                btn.innerText = 'Войти';
+                link.innerText = 'Зарегистрироваться';
+            } else {
+                title.innerText = 'Регистрация';
+                btn.innerText = 'Создать аккаунт';
+                link.innerText = 'Войти в существующий';
+            }
+        }
+
+        document.getElementById('auth-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('auth-login').value;
+            const password = document.getElementById('auth-password').value;
+            
+            const url = isLoginMode ? 'http://127.0.0.1:8000/login' : 'http://127.0.0.1:8000/register';
+
+            if (isLoginMode) {
+                // Для входа сервер требует FormData
+                const formData = new FormData();
+                formData.append('username', username);
+                formData.append('password', password);
+
+                fetch(url, { method: 'POST', body: formData })
+                .then(async res => {
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.detail || "Ошибка входа");
+                    return data;
+                })
+                .then(data => {
+                    alert(data.message);
+                    localStorage.setItem('username', username); // Запоминаем пользователя
+                    window.location.href = 'index.html'; // Перебрасываем на главную
+                })
+                .catch(err => alert('Ошибка: ' + err.message));
+            } else {
+                // Для регистрации сервер требует JSON
+                fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: username, password: password })
+                })
+                .then(async res => {
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.detail || "Ошибка регистрации");
+                    return data;
+                })
+                .then(data => {
+                    alert("Регистрация успешна! Теперь войдите.");
+                    toggleForm(); // Переключаем обратно на вход
+                })
+                .catch(err => alert('Ошибка: ' + err.message));
+            }
+        });
+    </script>
+</body>
+</html>

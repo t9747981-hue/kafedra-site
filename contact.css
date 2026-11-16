@@ -1,0 +1,140 @@
+/* ===== СТРАНИЦА КОНТАКТОВ ===== */
+.contacts-page {
+    display: flex;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 40px;
+}
+
+.contacts-info {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.contacts-info h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #92D5FF;
+}
+
+.contacts-info p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Блок погоды (API) */
+.weather-block {
+    margin-top: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.weather-block h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.weather-block div {
+    font-size: 18px;
+}
+
+/* Правая колонка: Форма */
+.contacts-form-block {
+    flex: 1;
+}
+
+.contacts-form-block h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #92D5FF;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Jura', sans-serif;
+    font-size: 16px;
+    background: white;
+    box-sizing: border-box;
+}
+
+.contact-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Ошибки под полями */
+.error-message {
+    color: #ff6b6b;
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+    min-height: 18px;
+}
+
+/* Красная рамка для невалидного поля */
+.contact-form input.invalid,
+.contact-form textarea.invalid {
+    border-color: #ff6b6b;
+    background-color: #ffe6e6;
+}
+
+/* Плашка успеха (если у тебя нет её в stale.css) */
+.success-message {
+    background-color: #7abdcf;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ===== АДАПТИВ ДЛЯ ТЕЛЕФОНОВ ===== */
+@media (max-width: 768px) {
+    .contacts-page {
+        flex-direction: column;
+        margin: 30px auto;
+        gap: 30px;
+        padding: 0 20px;
+    }
+    
+    .contacts-info h1 {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .contacts-form-block h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .contact-form {
+        padding: 20px;
+    }
+}

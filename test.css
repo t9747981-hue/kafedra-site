@@ -1,0 +1,397 @@
+.logo-icon{
+    width: 87px;
+    height: 84px;
+}
+.logo-znach{
+    width: 50px;
+    height: 25px;
+}
+body {
+    margin: 0;
+    font-family: 'Jura', sans-serif;
+    background: linear-gradient(135deg, #6c96e4, #466CB3);
+    color: white;
+}
+.main-header {
+    display: flex;                  /* Выстраивает элементы в ряд */
+    justify-content: space-between; /* Распределяет по краям */
+    align-items: center;            /* Выравнивает по центру по вертикали */
+    padding: 15px 40px;
+    gap: 50px;            /* Внутренние отступы: 20px сверху/снизу, 40px слева/справа */
+    background: linear-gradient(135deg, #92D5FF, #466CB3);     /* Голубой фон */
+    position: sticky;               /* Липкая шапка */
+    top: 0;                         /* Прилипает к верху */
+    z-index: 100;                   /* Поверх других элементов */
+}
+
+/* Логотип */
+.logo {
+    display: flex;                  /* Логотип и текст в ряд */
+    align-items: center;            /* По центру по вертикали */
+    gap: 50px;                      /* Расстояние между звездой и текстом */
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/* Меню */
+.main-nav ul {
+    display: flex;                  /* Пункты меню в ряд */
+    list-style: none;               /* Убираем точки */
+    gap: 47px;                      /* Расстояние между пунктами */
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 23px;
+}
+
+.main-nav a:hover {
+    text-decoration: underline;     /* Подчеркивание при наведении */
+}
+
+/* Иконки */
+.header-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Общие настройки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jura', sans-serif;
+    background:linear-gradient(to bottom,#466CB3,#17356D);
+    color: white;
+}
+
+/* Баннер */
+.banner {
+    background-image: url('banner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 150px 80px;
+    color: white;
+}
+
+.banner h1 {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    max-width: 700px;
+}
+
+.banner p {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 25px;
+}
+
+.banner-button {
+    width: 180px;
+    height: auto;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.banner-button:hover {
+    opacity: 0.8;
+}
+.news-text {
+    background: #2D4F8E;
+    padding: 40px 80px;
+    color: white;
+    font-size: 30px;
+    line-height: 1.5;
+}
+
+.info-block {
+    margin: 40px 60px;
+}
+
+.info-map {
+    position: relative;          /* ← якорь для текста */
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.map-image {
+    width: 100%;
+    display: block;
+}
+
+/* Текст поверх карты */
+.map-text {
+    max-width: 700px;
+    position: absolute;          /* ← вырываем из потока */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px 60px;
+    color:#17356D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.map-text h3 {
+    font-size: 35px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.map-text h3:first-child {
+    margin-top: 0;
+}
+
+.map-text p {
+    font-size: 25px;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+.main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+    background: linear-gradient(to bottom, #1B3A74,#3D074E);
+    color: white;
+}
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 350px;              /* Расстояние между звездой и текстом */
+}
+
+.footer-star {
+    width: 90px;            /* Большая звезда */
+    height: 90px;
+}
+
+.footer-text {
+    font-size: 38px;        /* Крупный текст */
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+/* Контакты справа */
+.footer-contacts {
+    text-align: right;
+}
+
+.footer-contacts p {
+    font-size: 18px;        /* Мелкий текст */
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.footer-contacts p:last-child {
+    margin-bottom: 0;
+}
+/* ===== АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНА ===== */
+@media (max-width: 768px) {
+
+    /* Шапка — в столбик */
+    .main-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+        text-align: center;
+    }
+
+    .logo {
+        font-size: 28px;
+        gap: 15px;
+    }
+
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Меню — в столбик */
+    .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .main-nav a {
+        font-size: 18px;
+    }
+
+    /* Баннер */
+    .banner {
+        padding: 80px 30px;
+    }
+
+    .banner h1 {
+        font-size: 32px;
+    }
+
+    .banner p {
+        font-size: 18px;
+    }
+
+    .banner-button {
+        width: 140px;
+    }
+
+    /* Текст новости */
+    .news-text {
+        font-size: 18px;
+        padding: 30px 20px;
+    }
+
+    /* Инфо-блок с картой */
+    .info-block {
+        margin: 20px;
+    }
+
+    .map-text {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .map-text h3 {
+        font-size: 22px;
+    }
+
+    .map-text p {
+        font-size: 16px;
+    }
+
+    /* Подвал — в столбик */
+    .main-footer {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .footer-logo {
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .footer-star {
+        width: 50px;
+        height: 50px;
+    }
+
+    .footer-text {
+        font-size: 24px;
+    }
+
+    .footer-contacts {
+        text-align: center;
+    }
+
+    .footer-contacts p {
+        font-size: 14px;
+    }
+}
+@media (max-width: 768px) {
+    /* ШАПКА — всё в одну строку */
+    .main-header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 15px;
+        gap: 10px;
+    }
+
+    .logo {
+        gap: 10px;
+        font-size: 18px;
+    }
+
+    .logo-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .main-nav ul {
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-nav a {
+        font-size: 14px;
+    }
+    
+    .logo-znach {
+        width: 30px;
+        height: 15px;
+    }
+
+    /* Баннер */
+    .banner { padding: 80px 20px 50px; }
+    .banner h1 { font-size: 32px; }
+    .banner p { font-size: 18px; }
+    .banner-button { width: 140px; }
+
+    /* Текст новости */
+    .news-text { font-size: 18px; padding: 30px 20px; }
+
+    /* Карта и текст */
+    .info-block { margin: 20px; }
+    .map-text { max-width: 100%; padding: 20px; }
+    .map-text h3 { font-size: 22px; }
+    .map-text p { font-size: 16px; }
+
+    /* ПОДВАЛ — логотип слева, контакты справа */
+    .main-footer { 
+        flex-direction: row;
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 20px 15px; 
+        text-align: left;
+        gap: 10px;
+    }
+
+    .footer-logo { 
+        flex-direction: column; /* Звезда над текстом */
+        align-items: flex-start; 
+        gap: 5px; 
+    }
+
+    .footer-star { width: 40px; height: 40px; }
+    .footer-text { font-size: 18px; letter-spacing: 1px; }
+    
+    .footer-contacts { text-align: right; }
+    .footer-contacts p { font-size: 12px; margin-bottom: 5px; }
+    /* Карта и текст на телефоне */
+    .info-block { 
+        margin: 20px; 
+    }
+    
+    .map-text { 
+        max-width: 50%;        /* ← ВОТ ГЛАВНОЕ: текст занимает только 60% ширины слева */
+        padding: 5px;         /* Уменьшили отступы *//
+    }
+    
+    .map-text h3 { 
+        font-size: 15px;       /* ← УМЕНЬШИЛИ ЗАГОЛОВОК (было 22px) */
+        margin-bottom: 8px; 
+        margin-top: 10px;
+    }
+    
+    .map-text p { 
+        font-size: 11px;       /* ← УМЕНЬШИЛИ ТЕКСТ (было 16px) */
+        line-height: 1.3;
+        margin-bottom: 3px;
+    }
+}

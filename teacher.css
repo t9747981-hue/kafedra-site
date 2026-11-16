@@ -1,0 +1,160 @@
+/* ===== ОБЩИЕ НАСТРОЙКИ ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jura', sans-serif;
+    background: linear-gradient(to bottom, #466CB3, #1a2b4c);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ШАПКА */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #92D5FF, #466CB3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.logo-icon { width: 60px; height: 60px; }
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.main-nav a:hover { text-decoration: underline; }
+
+/* ПОДВАЛ */
+.main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+    background: linear-gradient(to bottom, #192B4C, #3D074E);
+    color: white;
+    margin-top: 60px;
+}
+
+.footer-logo { display: flex; align-items: center; gap: 20px; }
+.footer-star { width: 70px; height: 70px; }
+.footer-text { font-size: 32px; font-weight: 400; }
+.footer-contacts { text-align: right; }
+.footer-contacts p { font-size: 18px; margin-bottom: 10px; }
+
+/* ===== ПРОФИЛЬ ПРЕПОДАВАТЕЛЯ ===== */
+.teacher-profile {
+    display: flex;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 40px;
+    color: white;
+    align-items: flex-start; 
+}
+
+.teacher-photo-container { flex: 0 0 350px; }
+
+.teacher-photo {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.teacher-info { flex: 1; }
+
+.teacher-info h1 {
+    font-size: 56px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.teacher-role {
+    font-size: 24px;
+    color: #92D5FF; 
+    margin-bottom: 30px;
+}
+
+.teacher-contacts {
+    background: rgba(255, 255, 255, 0.1); 
+    padding: 20px 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.teacher-contacts p { margin-bottom: 10px; }
+
+.teacher-bio h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #92D5FF;
+}
+
+.teacher-bio p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.btn-back {
+    display: inline-block;
+    background-color: #4a7bc9;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+.btn-back:hover { background-color: #365fa3; }
+
+/* ===== АДАПТИВ ДЛЯ ТЕЛЕФОНОВ ===== */
+@media (max-width: 768px) {
+    .main-header { flex-direction: row; justify-content: space-between; padding: 10px 15px; gap: 10px; }
+    .logo { gap: 10px; font-size: 18px; }
+    .logo-icon { width: 35px; height: 35px; }
+    .main-nav ul { flex-direction: row; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .main-nav a { font-size: 14px; }
+
+    .teacher-profile { flex-direction: column; margin: 40px auto; gap: 30px; }
+    .teacher-photo-container { flex: 0 0 100%; max-width: 300px; margin: 0 auto; }
+    .teacher-info h1 { font-size: 36px; text-align: center; }
+    .teacher-role { font-size: 20px; text-align: center; }
+    .teacher-contacts { padding: 15px 20px; font-size: 16px; }
+    .teacher-bio h2 { font-size: 24px; }
+    .teacher-bio p { font-size: 16px; }
+    .btn-back { display: block; text-align: center; width: 100%; }
+
+    .main-footer { flex-direction: row; justify-content: space-between; align-items: center; padding: 20px 15px; text-align: left; gap: 10px; }
+    .footer-logo { flex-direction: column; align-items: flex-start; gap: 5px; }
+    .footer-star { width: 40px; height: 40px; }
+    .footer-text { font-size: 18px; letter-spacing: 1px; }
+    .footer-contacts { text-align: right; }
+    .footer-contacts p { font-size: 12px; margin-bottom: 5px; }
+}
