@@ -59,11 +59,13 @@ def verify_password(plain_password, hashed_password):
 # ==========================================
 # 3. СЕРВЕР
 # ==========================================
-app = FastAPI(title="Сайт кафедры")
-app.mount("/", StaticFiles(directory=".", html=True), name="static")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://kafedra-site.onrender.com",  # Твой сайт на Render
+        "http://127.0.0.1:5500",              # Локальный Live Server
+        "http://localhost:5500",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
