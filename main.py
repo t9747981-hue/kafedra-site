@@ -8,6 +8,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from config import settings
 from fastapi.staticfiles import StaticFiles
+
 # ==========================================
 # 1. НАСТРОЙКА БАЗЫ ДАННЫХ
 # ==========================================
@@ -59,17 +60,18 @@ def verify_password(plain_password, hashed_password):
 # ==========================================
 # 3. СЕРВЕР
 # ==========================================
+app = FastAPI(title="Сайт кафедры")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://kafedra-site.onrender.com",  # Твой сайт на Render
-        "http://127.0.0.1:5500",              # Локальный Live Server
-        "http://localhost:5500",
-    ],
+    allow_origins=["*"], # Разрешаем всем (для теста)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Подключаем статику (чтобы сайт открывался по ссылке)
+app.mount("/", StaticFiles(directory=".", html=True), name="static")
 
 def get_db():
     db = SessionLocal()
@@ -78,6 +80,7 @@ def get_db():
     finally:
         db.close()
 
+# Схемы данных
 class TeacherResponse(BaseModel):
     id: int
     name: str
@@ -128,12 +131,9 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 
 @app.post("/applications")
 def create_application(app_data: ApplicationCreate, db: Session = Depends(get_db)):
-    # Ищем пользователя по логину, который пришел с сайта
     user = db.query(User).filter(User.username == app_data.username).first()
-    
-    # Если такого пользователя нет — создаем его автоматически (быстрая регистрация)
     if not user:
-        hashed_pw = get_password_hash("123456") # Пароль по умолчанию
+        hashed_pw = get_password_hash("123456")
         user = User(username=app_data.username, hashed_password=hashed_pw)
         db.add(user)
         db.commit()
@@ -153,7 +153,6 @@ def create_application(app_data: ApplicationCreate, db: Session = Depends(get_db
 
 @app.get("/my-applications")
 def get_my_applications(username: str, db: Session = Depends(get_db)):
-    # Фильтруем заявки по имени пользователя
     user = db.query(User).filter(User.username == username).first()
     if not user:
         return []
@@ -167,6 +166,7 @@ def get_my_applications(username: str, db: Session = Depends(get_db)):
             "date": a.created_at.strftime("%d.%m.%Y %H:%M") if a.created_at else ""
         })
     return result
+
 # ==========================================
 # 4. НАПОЛНЕНИЕ БАЗЫ (15 записей)
 # ==========================================
