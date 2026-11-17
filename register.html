@@ -119,7 +119,8 @@
             const username = document.getElementById('auth-login').value;
             const password = document.getElementById('auth-password').value;
             
-            const url = isLoginMode ? 'http://127.0.0.1:8000/login' : 'http://127.0.0.1:8000/register';
+            // ИСПРАВЛЕНО: убрали http://127.0.0.1:8000 и поставили относительные пути
+            const url = isLoginMode ? '/login' : '/register';
 
             if (isLoginMode) {
                 // Для входа сервер требует FormData
