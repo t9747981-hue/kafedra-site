@@ -71,7 +71,6 @@ app.add_middleware(
 )
 
 # Подключаем статику (чтобы сайт открывался по ссылке)
-app.mount("/", StaticFiles(directory=".", html=True), name="static")
 
 def get_db():
     db = SessionLocal()
