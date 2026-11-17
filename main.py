@@ -8,10 +8,9 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from config import settings
 from fastapi.staticfiles import StaticFiles
+import os
 
-# ==========================================
 # 1. НАСТРОЙКА БАЗЫ ДАННЫХ
-# ==========================================
 SQLALCHEMY_DATABASE_URL = settings.database_url
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -45,9 +44,7 @@ class Application(Base):
 
 Base.metadata.create_all(bind=engine)
 
-# ==========================================
 # 2. БЕЗОПАСНОСТЬ
-# ==========================================
 password_hash = PasswordHash.recommended()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -57,20 +54,16 @@ def get_password_hash(password):
 def verify_password(plain_password, hashed_password):
     return password_hash.verify(plain_password, hashed_password)
 
-# ==========================================
 # 3. СЕРВЕР
-# ==========================================
 app = FastAPI(title="Сайт кафедры")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Разрешаем всем (для теста)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Подключаем статику (чтобы сайт открывался по ссылке)
 
 def get_db():
     db = SessionLocal()
@@ -197,3 +190,10 @@ def fill_database():
     db.close()
 
 fill_database()
+
+# ==========================================
+# 5. РАЗДАЧА СТАТИКИ (В САМОМ КОНЦЕ!)
+# ==========================================
+# Это должно быть в самом конце, чтобы не перехватывать API!
+if os.path.exists("index.html"):
+    app.mount("/", StaticFiles(directory=".", html=True), name="static")
